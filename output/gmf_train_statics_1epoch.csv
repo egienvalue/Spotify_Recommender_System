@@ -1,0 +1,2 @@
+epoch,hit_rate,ndcg,loss,time
+0,0.0843,0.0406,0.5830,7.0554
