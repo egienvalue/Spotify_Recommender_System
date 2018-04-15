@@ -304,7 +304,7 @@ def main(method):
     print 'Choose Model ======> %s' % method
     print 'Start Building and Training'
     model_path = './Model_saved/'
-    model_weight_path = './Model_weights/'
+    model_weight_path = './Model_saved/'
     output_path = './output/'
     num_epochs = 1
     batch_size = 256
@@ -325,15 +325,15 @@ def main(method):
     if method == 'NCF':
         model = build_ncf_model(num_user, num_item, latent_v_dim, dense_layers,
             reg_layers, reg_mf)
-        plot_model(model, to_file='ncf_model.png')
+        #plot_model(model, to_file='ncf_model.png')
     elif method == 'GMF':
         model = build_gmf_model(num_user, num_item, latent_v_dim, dense_layers,
             reg_layers, reg_mf)
-        plot_model(model, to_file='gmf_model.png')
+        #plot_model(model, to_file='gmf_model.png')
     elif method == 'MLP':
         model = build_mlp_model(num_user, num_item, latent_v_dim, dense_layers,
             reg_layers, reg_mf)
-        plot_model(model, to_file='mlp_model.png')
+        #plot_model(model, to_file='mlp_model.png')
 
     
     if learner.lower() == "adagrad": 
@@ -432,4 +432,6 @@ def main(method):
 
 if __name__ == '__main__':
     
+    main('NCF')
     main('GMF')
+    main('MLP')
