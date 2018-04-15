@@ -306,7 +306,7 @@ def main(method):
     model_path = './Model_saved/'
     model_weight_path = './Model_saved/'
     output_path = './output/'
-    num_epochs = 100
+    num_epochs = 30
     batch_size = 256
     latent_v_dim = 8
     dense_layers = [64, 32, 16, 8]
@@ -392,17 +392,17 @@ def main(method):
         if hit_rate > best_hr:
             best_hr, best_ndcg,best_epoch = hit_rate, ndcg, epoch
             if method == 'NCF':
-                model_save_file = model_weight_path + ('%s_NCF_%d_%s_%0.6f.h5' % (dataset, latent_v_dim,
+                model_save_file = model_weight_path + ('%s_NCF_%d_%s_%d.h5' % (dataset, latent_v_dim,
                                                          str(dense_layers),
-                                                         best_hr))
+                                                         num_epochs))
             elif method == 'GMF':
-                model_save_file = model_weight_path + ('%s_GMF_%d_%s_%0.6f.h5' % (dataset, latent_v_dim,
+                model_save_file = model_weight_path + ('%s_GMF_%d_%s_%d.h5' % (dataset, latent_v_dim,
                                                          str(dense_layers),
-                                                         best_hr))
+                                                         num_epochs))
             elif method == 'MLP':
-                model_save_file = model_weight_path + ('%s_MLP_%d_%s_%0.6f.h5' % (dataset, latent_v_dim,
+                model_save_file = model_weight_path + ('%s_MLP_%d_%s_%d.h5' % (dataset, latent_v_dim,
                                                          str(dense_layers),
-                                                         best_hr))
+                                                         num_epochs))
             print 'Save Model back to %s' % model_save_file
             model.save(model_save_file, overwrite=True)
 
