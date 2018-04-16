@@ -23,8 +23,8 @@ class Data(object):
             #print filename 
             data = json.load(file_handler)
             for play_list in data["playlists"]:
-                if len(play_list["tracks"]) < 30:
-                    continue
+                #if len(play_list["tracks"]) < 30:
+                #    continue
                 #print play_list["tracks"][-1]["track_uri"]
                 play_lists.append(play_list)
                 for track in play_list["tracks"]:
@@ -41,9 +41,9 @@ class Data(object):
         leave_one = []
         train_track = []
         for idx,play_list in enumerate(play_lists):
-            if len(play_list["tracks"]) < 30:
-                leave_one.append((0,0))
-                continue
+            #if len(play_list["tracks"]) < 30:
+            #    leave_one.append((-1,-1))
+            #    continue
             for track in play_list["tracks"][:-1]:
                 train_track.append(track)
                 ret = "%d\t%d\t1\t%d\n" % \
@@ -56,6 +56,8 @@ class Data(object):
         out_filename = "./Data/test.rating"
         out_handler = open(out_filename, "w")
         for x in leave_one:
+            if x == (-1,-1):
+                continue
             ret = "%d\t%d\t5\t%d\n" % \
                    (x[0],x[1], 978824330)
             out_handler.write(ret)
@@ -75,8 +77,8 @@ class Data(object):
 
         num_to_select = 99
         for idx,play_list in enumerate(play_lists):
-            if len(play_list["tracks"]) < 30:
-                continue
+            #if len(play_list["tracks"]) < 30:
+            #    continue
             print "dealing with negative testcase for Playlist--%d" % idx
             temp_set = set([x["track_uri"] for x in play_list["tracks"]])
             temp_set = track_uris - temp_set
@@ -89,7 +91,10 @@ class Data(object):
         out_handler.close()
         print "%s..Done" % out_filename
 
-            
-          
-        
+        track_uri2num_json = json.dumps(track_uri2num)
+        filename = str(num_play_list) + '_track_uri2num_map.json'
+        with open(filename, 'w') as f:
+            f.write(track_uri2num_json)
+        f.close()
+         
         leave_one = []
