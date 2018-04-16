@@ -31,6 +31,8 @@ class Data(object):
                     track_uris.append(track["track_uri"])
 
         track_uris = set(track_uris)
+        print len(track_uris)
+        print len(play_lists)
         for idx,track_uri in enumerate(list(track_uris)):
             track_uri2num[track_uri] = idx
         
@@ -43,7 +45,6 @@ class Data(object):
         for idx,play_list in enumerate(play_lists):
             #if len(play_list["tracks"]) < 30:
             #    leave_one.append((-1,-1))
-            #    continue
             for track in play_list["tracks"][:-1]:
                 train_track.append(track)
                 ret = "%d\t%d\t1\t%d\n" % \
@@ -56,8 +57,8 @@ class Data(object):
         out_filename = "./Data/test.rating"
         out_handler = open(out_filename, "w")
         for x in leave_one:
-            if x == (-1,-1):
-                continue
+            #if x == (-1,-1):
+            #    continue
             ret = "%d\t%d\t5\t%d\n" % \
                    (x[0],x[1], 978824330)
             out_handler.write(ret)
