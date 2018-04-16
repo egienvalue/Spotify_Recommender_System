@@ -306,7 +306,7 @@ def main(method):
     model_path = './Model_saved/'
     model_weight_path = './Model_saved/'
     output_path = './output/'
-    num_epochs = 60
+    num_epochs = 61
     batch_size = 256
     latent_v_dim = 8
     dense_layers = [64, 32, 16, 8]
