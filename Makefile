@@ -1,10 +1,14 @@
-all: final
+all: recommend
 
-final:
-	python produce_graph.py
+recommend: 
+	python main_recommend.py 52
+
+train:
 	python neural_recsys.py
 
+data_process:
+	python produce_graph.py
+
 clean:
-	rm ./output/*
-	rm ./Model_saved/*
-	rm *.png
+	#rm ./output/*
+	#rm *.png
