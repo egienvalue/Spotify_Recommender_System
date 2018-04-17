@@ -82,6 +82,7 @@ def main():
     num_play_list = 10000
     topK = 500
     model_path = './Model_saved/spotify_NCF_8_[64, 32, 16, 8]_default.h5'
+    print('using model : %s' % model_path)
     model = load_model(model_path)
     
     mlp_user_embedding_weights = (next(iter(filter(lambda x: x.name == \
@@ -124,6 +125,7 @@ def main():
     topK_rec_track_num = [x[0] for x in results_t[0:topK]]
     topK_rec_track = [num2track_uri[x] for x in topK_rec_track_num]
     rec_output_file = './output/top'+ str(topK)+'_recommend_for_'+str(desired_user_id)+'.txt'
+    print('save the results back to: %s' % rec_output_file)
     with open(rec_output_file, 'w') as f:
         for x in topK_rec_track:
             f.write(x + '\n')
